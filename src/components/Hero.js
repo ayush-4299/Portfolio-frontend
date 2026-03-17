@@ -56,14 +56,6 @@ const Tagline = styled(motion.p)`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
 const Button = styled(motion.button)`
   padding: 0.75rem 1.5rem;
   background-color: ${props => props.primary ? '#00d4ff' : 'transparent'};
@@ -76,10 +68,19 @@ const Button = styled(motion.button)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
   &:hover {
     background-color: ${props => props.primary ? '#0099cc' : '#00d4ff'};
     color: #0a0a0a;
   }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const SocialLinks = styled.div`
@@ -137,7 +138,7 @@ const Hero = () => {
         <Button primary onClick={scrollToProjects}>
           <FaProjectDiagram /> View Projects
         </Button>
-        <Button>
+        <Button as="a" href="/resume.pdf" download="Ayush_Resume.pdf">
           <FaDownload /> Download CV
         </Button>
       </ButtonContainer>
