@@ -1,7 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import styled, { createGlobalStyle } from 'styled-components';
-import { FaGithub, FaLinkedin, FaDownload, FaProjectDiagram, FaCertificate, FaGraduationCap, FaCode, FaDatabase } from 'react-icons/fa';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';

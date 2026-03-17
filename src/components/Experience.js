@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaCode, FaDatabase } from 'react-icons/fa';
 
 const ExperienceSection = styled.section`
   padding: 5rem 2rem;
