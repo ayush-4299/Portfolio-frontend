@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaDownload, FaArrowDown } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload, FaArrowDown, FaProjectDiagram } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   height: 100vh;
