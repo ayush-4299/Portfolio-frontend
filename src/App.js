@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Certifications from './components/Certifications';
 import Education from './components/Education';
 import DataHighlights from './components/DataHighlights';
+import Contact from './components/Contact';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -89,6 +90,7 @@ function App() {
             <NavLink href="#experience" onClick={() => scrollToSection('experience')}>Experience</NavLink>
             <NavLink href="#certifications" onClick={() => scrollToSection('certifications')}>Certifications</NavLink>
             <NavLink href="#education" onClick={() => scrollToSection('education')}>Education</NavLink>
+            <NavLink href="#contact" onClick={() => scrollToSection('contact')}>Contact</NavLink>
           </NavLinks>
           <MobileMenu>
             {/* Mobile menu can be added later */}
@@ -101,6 +103,7 @@ function App() {
         <Certifications />
         <Education />
         <DataHighlights />
+        <Contact />
       </AppContainer>
     </>
   );
