@@ -175,7 +175,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Create mailto link
-    const mailtoLink = `mailto:your-email@example.com?subject=${encodeURIComponent(
+    const mailtoLink = `mailto:ayushayush2214@gmail.com?subject=${encodeURIComponent(
       formData.subject
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
@@ -216,8 +216,8 @@ const Contact = () => {
             </IconBox>
             <ContactItemContent>
               <ContactLabel>Email</ContactLabel>
-              <ContactLink href="mailto:your-email@example.com">
-                your-email@example.com
+              <ContactLink href="mailto:ayushayush2214@gmail.com">
+                ayushayush2214@gmail.com
               </ContactLink>
             </ContactItemContent>
           </ContactItem>
@@ -232,8 +232,8 @@ const Contact = () => {
               <FaPhone />
             </IconBox>
             <ContactItemContent>
-              <ContactLabel>Phone</ContactLabel>
-              <ContactLink href="tel:+1234567890">+1 (234) 567-890</ContactLink>
+              <ContactLabel>Phone & WhatsApp</ContactLabel>
+              <ContactLink href="tel:+919992953966">+91 999 295 3966</ContactLink>
             </ContactItemContent>
           </ContactItem>
 
