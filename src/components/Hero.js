@@ -3,6 +3,32 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaDownload, FaArrowDown, FaProjectDiagram } from 'react-icons/fa';
 
+const typewriter = `
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink {
+    from { border-right-color: #00d4ff; }
+    to { border-right-color: transparent; }
+  }
+`;
+
+const glow = `
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.5), 0 0 60px rgba(255, 0, 110, 0.3); }
+  }
+`;
+
+const float = `
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+  }
+`;
+
 const HeroSection = styled.section`
   height: 100vh;
   display: flex;
@@ -10,90 +36,232 @@ const HeroSection = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
   padding: 0 2rem;
   position: relative;
+  overflow: hidden;
+  
+  ${typewriter}
+  ${glow}
+  ${float}
 `;
 
-const ProfileImage = styled.div`
-  width: 150px;
-  height: 150px;
+const FloatingShape = styled(motion.div)`
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(0, 212, 255, 0.2);
   border-radius: 50%;
-  background-color: #333;
+  pointer-events: none;
+  
+  &.shape-1 {
+    top: 10%;
+    right: 10%;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  &.shape-2 {
+    bottom: 15%;
+    left: 5%;
+    animation: float 8s ease-in-out infinite 1s;
+  }
+  
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
+`;
+
+const ProfileImage = styled(motion.div)`
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  color: #00d4ff;
-`;
-
-const Name = styled(motion.h1)`
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  color: #ffffff;
+  font-size: 4rem;
+  box-shadow: 
+    0 0 40px rgba(0, 212, 255, 0.5),
+    0 0 80px rgba(255, 0, 110, 0.3),
+    inset 0 0 40px rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(0, 212, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #ff006e);
+    opacity: 0.3;
+    filter: blur(10px);
+    z-index: -1;
+  }
+  
   @media (max-width: 768px) {
-    font-size: 2rem;
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
   }
 `;
 
-const Title = styled(motion.h2)`
-  font-size: 1.5rem;
+const Name = styled(motion.h1)`
+  font-size: 4rem;
   margin-bottom: 1rem;
+  background: linear-gradient(135deg, #00d4ff, #ff006e, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: 2px;
+  animation: glow 3s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const TitleContainer = styled.div`
+  position: relative;
+  z-index: 2;
+  min-height: 60px;
+  margin-bottom: 1.5rem;
+`;
+
+const Title = styled(motion.h2)`
+  font-size: 1.8rem;
   color: #00d4ff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #00d4ff;
+  animation: typewriter 4s steps(40) 1s forwards, blink 0.75s step-end infinite 4s;
+  position: relative;
+  
   @media (max-width: 768px) {
     font-size: 1.2rem;
+    white-space: normal;
   }
 `;
 
 const Tagline = styled(motion.p)`
   font-size: 1.2rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
+  margin-bottom: 2.5rem;
+  max-width: 650px;
   color: #cccccc;
+  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  
   @media (max-width: 768px) {
     font-size: 1rem;
   }
 `;
 
 const Button = styled(motion.button)`
-  padding: 0.75rem 1.5rem;
-  background-color: ${props => props.primary ? '#00d4ff' : 'transparent'};
+  padding: 1rem 2rem;
+  background: ${props => props.primary ? 'linear-gradient(135deg, #00d4ff, #0099cc)' : 'transparent'};
   color: ${props => props.primary ? '#0a0a0a' : '#ffffff'};
   border: 2px solid #00d4ff;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 110, 0.2);
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
+  
   &:hover {
-    background-color: ${props => props.primary ? '#0099cc' : '#00d4ff'};
-    color: #0a0a0a;
+    transform: translateY(-3px) scaleX(1.05);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    border-color: #ff006e;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px);
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
   justify-content: center;
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled(motion.a)`
   color: #ffffff;
-  font-size: 2rem;
-  transition: color 0.3s;
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  
   &:hover {
     color: #00d4ff;
+    transform: translateY(-8px) rotate(10deg) scale(1.1);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 110, 0.2));
+    border-color: #00d4ff;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -103,6 +271,23 @@ const ScrollDown = styled(motion.div)`
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
+  color: #00d4ff;
+  font-size: 2rem;
+  padding: 1rem;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  
+  &:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
 `;
 
 const Hero = () => {
@@ -110,50 +295,118 @@ const Hero = () => {
     document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
     <HeroSection id="hero">
-      <ProfileImage>👤</ProfileImage>
-      <Name
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <FloatingShape className="shape-1" />
+      <FloatingShape className="shape-2" />
+      
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}
       >
-        Ayush
-      </Name>
-      <Title
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        Data Analyst | Django Full Stack Developer
-      </Title>
-      <Tagline
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        Turning data into insights and building intelligent web applications
-      </Tagline>
-      <ButtonContainer>
-        <Button primary onClick={scrollToProjects}>
-          <FaProjectDiagram /> View Projects
-        </Button>
-        <Button as="a" href="/AyushCVMain.pdf" download="AyushCVMain.pdf">
-          <FaDownload /> Download CV
-        </Button>
-      </ButtonContainer>
-      <SocialLinks>
-        <SocialLink href="https://github.com" target="_blank" rel="noopener noreferrer">
-          <FaGithub />
-        </SocialLink>
-        <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin />
-        </SocialLink>
-      </SocialLinks>
+        <motion.div variants={itemVariants}>
+          <ProfileImage
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'backOut' }}
+            whileHover={{ scale: 1.05 }}
+          >
+            👤
+          </ProfileImage>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Name>Ayush</Name>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <TitleContainer>
+            <Title>Data Analyst | Full Stack Developer</Title>
+          </TitleContainer>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Tagline>
+            Transforming data into actionable insights and building intelligent web applications that solve real-world problems
+          </Tagline>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <ButtonContainer>
+            <Button 
+              primary 
+              onClick={scrollToProjects}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaProjectDiagram /> View Projects
+            </Button>
+            <Button 
+              as="a" 
+              href="/AyushCVMain.pdf" 
+              download="AyushCVMain.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaDownload /> Download CV
+            </Button>
+          </ButtonContainer>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <SocialLinks>
+            <SocialLink 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaGithub />
+            </SocialLink>
+            <SocialLink 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaLinkedin />
+            </SocialLink>
+          </SocialLinks>
+        </motion.div>
+      </motion.div>
+
       <ScrollDown
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
         onClick={() => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })}
+        whileHover={{ scale: 1.1 }}
       >
         <FaArrowDown />
       </ScrollDown>

@@ -4,54 +4,131 @@ import { motion } from 'framer-motion';
 import { FaPython, FaDatabase, FaChartBar, FaCode, FaFlask, FaReact, FaNodeJs, FaLightbulb } from 'react-icons/fa';
 
 const SkillsSection = styled.section`
-  padding: 5rem 2rem;
-  background-color: #111;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #111 0%, #1a0a2e 50%, #111 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #00d4ff;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
 `;
 
 const SkillsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 const SkillCard = styled(motion.div)`
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(26, 10, 46, 0.8));
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 212, 255, 0.2);
+    transform: translateY(-15px) scale(1.02);
+    border-color: #00d4ff;
+    box-shadow: 0 15px 50px rgba(0, 212, 255, 0.3);
+    
+    &::before {
+      left: 100%;
+    }
   }
 `;
 
 const SkillTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #ff006e);
+    margin: 0.8rem auto 0;
+  }
 `;
 
 const SkillList = styled.ul`
   list-style: none;
-  text-align: left;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 `;
 
 const SkillItem = styled(motion.li)`
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: #cccccc;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  background: rgba(0, 212, 255, 0.08);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  margin: 0.5rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  
+  svg {
+    color: #00d4ff;
+    font-size: 1.2rem;
+  }
+  
+  &:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-3px) scale(1.05);
+    border-color: #00d4ff;
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
+  }
 `;
 
 const Skills = () => {
