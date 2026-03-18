@@ -37,6 +37,13 @@ const EducationTitle = styled.h3`
 
 const EducationDetails = styled.p`
   color: #cccccc;
+  margin: 0.5rem 0;
+`;
+
+const EducationInstitution = styled.p`
+  color: #00d4ff;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
 `;
 
 const Education = () => {
@@ -48,13 +55,13 @@ const Education = () => {
     },
     {
       title: 'Intermediate',
-      institution: '',
-      details: '',
+      institution: 'New Happy Public School (CBSE)',
+      details: 'PCM; Percentage: 68%',
     },
     {
       title: 'Matriculation',
-      institution: '',
-      details: '',
+      institution: 'New Happy Public School (CBSE)',
+      details: 'Percentage: 72%',
     },
   ];
 
@@ -79,7 +86,8 @@ const Education = () => {
           >
             <FaGraduationCap style={{ fontSize: '2rem', color: '#00d4ff', marginBottom: '1rem' }} />
             <EducationTitle>{edu.title}</EducationTitle>
-            <EducationDetails>{edu.institution} {edu.details}</EducationDetails>
+            {edu.institution && <EducationInstitution>{edu.institution}</EducationInstitution>}
+            {edu.details && <EducationDetails>{edu.details}</EducationDetails>}
           </EducationItem>
         ))}
       </EducationContainer>
