@@ -50,7 +50,7 @@ const Education = () => {
   const education = [
     {
       title: 'B.Tech CSE',
-      institution: 'LPU',
+      institution: 'Lovely Professional University',
       details: 'CGPA: 6.5',
     },
     {
