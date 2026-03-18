@@ -90,7 +90,7 @@ const Certifications = () => {
       name: 'Mastering Python, Pandas, Numpy',
       issuer: 'Udemy',
       date: 'Feb 7, 2024',
-      image: '/python numpy pandas.jpeg'
+      image: '/python-numpy-pandas.jpeg'
     },
   ];
 
