@@ -138,7 +138,7 @@ const Hero = () => {
         <Button primary onClick={scrollToProjects}>
           <FaProjectDiagram /> View Projects
         </Button>
-        <Button as="a" href="/resume.pdf" download="Ayush_Resume.pdf">
+        <Button as="a" href="/AyushCVMain.pdf" download="AyushCVMain.pdf">
           <FaDownload /> Download CV
         </Button>
       </ButtonContainer>
