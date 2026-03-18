@@ -41,13 +41,39 @@ const CertificationTitle = styled.h3`
   color: #ffffff;
 `;
 
+const CertificationIssuer = styled.p`
+  font-size: 0.9rem;
+  color: #00d4ff;
+  margin-bottom: 0.3rem;
+`;
+
+const CertificationDate = styled.p`
+  font-size: 0.8rem;
+  color: #888;
+`;
+
 const Certifications = () => {
   const certifications = [
-    'ChatGPT Prompt Engineering',
-    'C++ OOPS with DSA',
-    'Cloud Computing',
-    'Hackathon Participation',
-    'Python (Udemy)',
+    {
+      name: 'ChatGPT Prompt Engineering',
+      issuer: 'Infosys Springboard',
+      date: 'Oct 6, 2025'
+    },
+    {
+      name: 'C++ OOPS with DSA',
+      issuer: 'CSE Pathshala',
+      date: 'Aug 3, 2025'
+    },
+    {
+      name: 'Hack Quest - 24 Hours CTF Challenge',
+      issuer: 'upGrad Campus',
+      date: 'Apr 1, 2024'
+    },
+    {
+      name: 'Mastering Python, Pandas, Numpy',
+      issuer: 'Udemy',
+      date: 'Feb 7, 2024'
+    },
   ];
 
   return (
@@ -70,7 +96,9 @@ const Certifications = () => {
             viewport={{ once: true }}
           >
             <FaCertificate style={{ fontSize: '2rem', color: '#00d4ff', marginBottom: '1rem' }} />
-            <CertificationTitle>{cert}</CertificationTitle>
+            <CertificationTitle>{cert.name}</CertificationTitle>
+            <CertificationIssuer>{cert.issuer}</CertificationIssuer>
+            <CertificationDate>{cert.date}</CertificationDate>
           </CertificationCard>
         ))}
       </CertificationsContainer>
