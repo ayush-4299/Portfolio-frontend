@@ -52,27 +52,45 @@ const CertificationDate = styled.p`
   color: #888;
 `;
 
+const CertificationImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
 const Certifications = () => {
   const certifications = [
     {
       name: 'ChatGPT Prompt Engineering',
       issuer: 'Infosys Springboard',
-      date: 'Oct 6, 2025'
+      date: 'Oct 6, 2025',
+      image: '/infosys.jpeg'
     },
     {
       name: 'C++ OOPS with DSA',
       issuer: 'CSE Pathshala',
-      date: 'Aug 3, 2025'
+      date: 'Aug 3, 2025',
+      image: '/csepathshala.jpeg'
     },
     {
       name: 'Hack Quest - 24 Hours CTF Challenge',
       issuer: 'upGrad Campus',
-      date: 'Apr 1, 2024'
+      date: 'Apr 1, 2024',
+      image: '/hackathon.jpeg'
     },
     {
       name: 'Mastering Python, Pandas, Numpy',
       issuer: 'Udemy',
-      date: 'Feb 7, 2024'
+      date: 'Feb 7, 2024',
+      image: '/python numpy pandas.jpeg'
     },
   ];
 
@@ -95,7 +113,15 @@ const Certifications = () => {
             transition={{ duration: 0.8, delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <FaCertificate style={{ fontSize: '2rem', color: '#00d4ff', marginBottom: '1rem' }} />
+            {cert.image && (
+              <CertificationImage 
+                src={cert.image} 
+                alt={cert.name}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
             <CertificationTitle>{cert.name}</CertificationTitle>
             <CertificationIssuer>{cert.issuer}</CertificationIssuer>
             <CertificationDate>{cert.date}</CertificationDate>
