@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaCertificate } from 'react-icons/fa';
 
 const CertificationsSection = styled.section`
   padding: 5rem 2rem;
