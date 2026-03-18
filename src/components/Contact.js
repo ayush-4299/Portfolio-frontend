@@ -1,30 +1,53 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaCheck } from 'react-icons/fa';
 
 const ContactSection = styled.section`
-  padding: 5rem 2rem;
-  background-color: #111;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #00d4ff;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
 `;
 
 const ContactContainer = styled.div`
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
+  position: relative;
+  z-index: 1;
+  
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -39,13 +62,34 @@ const ContactItem = styled(motion.div)`
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(26, 10, 46, 0.6));
+  border-radius: 12px;
+  border: 2px solid rgba(0, 212, 255, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  &:hover {
+    transform: translateX(10px);
+    border-color: rgba(0, 212, 255, 0.5);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(26, 10, 46, 0.8));
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.15);
+  }
 `;
 
-const IconBox = styled.div`
-  font-size: 2rem;
+const IconWrapper = styled(motion.div)`
+  font-size: 2.5rem;
   color: #00d4ff;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ${ContactItem}:hover & {
+    color: #ff006e;
+  }
 `;
 
 const ContactItemContent = styled.div`
@@ -56,19 +100,34 @@ const ContactItemContent = styled.div`
 const ContactLabel = styled.h4`
   color: #ffffff;
   margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  
+  ${ContactItem}:hover & {
+    color: #00d4ff;
+  }
 `;
 
 const ContactValue = styled.p`
   color: #cccccc;
   margin: 0;
+  transition: color 0.3s ease;
+  
+  ${ContactItem}:hover & {
+    color: #e0e0e0;
+  }
 `;
 
 const ContactLink = styled.a`
   color: #00d4ff;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  
   &:hover {
-    color: #0099cc;
+    color: #ff006e;
+    text-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
   }
 `;
 
@@ -76,6 +135,16 @@ const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6), rgba(26, 10, 46, 0.6));
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 212, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -85,60 +154,85 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+  color: #00d4ff;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 `;
 
 const Input = styled.input`
-  padding: 0.75rem;
-  background-color: #1a1a1a;
-  border: 2px solid #333;
-  border-radius: 5px;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.8), rgba(30, 10, 50, 0.8));
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
   color: #ffffff;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(5px);
+  
+  &::placeholder {
+    color: rgba(200, 200, 200, 0.5);
+  }
+  
   &:focus {
     outline: none;
     border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    background: linear-gradient(135deg, rgba(20, 20, 40, 1), rgba(30, 10, 50, 1));
   }
 `;
 
 const TextArea = styled.textarea`
-  padding: 0.75rem;
-  background-color: #1a1a1a;
-  border: 2px solid #333;
-  border-radius: 5px;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.8), rgba(30, 10, 50, 0.8));
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
   color: #ffffff;
   font-size: 1rem;
   min-height: 150px;
   resize: vertical;
-  transition: border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   font-family: inherit;
+  backdrop-filter: blur(5px);
+  
+  &::placeholder {
+    color: rgba(200, 200, 200, 0.5);
+  }
+  
   &:focus {
     outline: none;
     border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    background: linear-gradient(135deg, rgba(20, 20, 40, 1), rgba(30, 10, 50, 1));
   }
 `;
 
 const SubmitButton = styled(motion.button)`
-  padding: 0.75rem 1.5rem;
-  background-color: #00d4ff;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
   color: #0a0a0a;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+  
   &:hover {
-    background-color: #0099cc;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 212, 255, 0.6);
+    background: linear-gradient(135deg, #ff006e, #ff3d8f);
   }
+  
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -146,13 +240,21 @@ const SubmitButton = styled(motion.button)`
 `;
 
 const SuccessMessage = styled(motion.div)`
-  background-color: #1a3a1a;
+  background: linear-gradient(135deg, rgba(0, 60, 40, 0.8), rgba(0, 30, 20, 0.8));
   border: 2px solid #00d4ff;
-  color: #00ff00;
-  padding: 1rem;
-  border-radius: 5px;
+  color: #00ff88;
+  padding: 1.25rem;
+  border-radius: 10px;
   text-align: center;
   margin-top: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 `;
 
 const Contact = () => {
@@ -185,7 +287,27 @@ const Contact = () => {
     setTimeout(() => {
       setFormData({ name: '', email: '', subject: '', message: '' });
       setSubmitted(false);
-    }, 2000);
+    }, 3000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
   };
 
   return (
@@ -205,52 +327,48 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <ContactItem
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <IconBox>
-              <FaEnvelope />
-            </IconBox>
-            <ContactItemContent>
-              <ContactLabel>Email</ContactLabel>
-              <ContactLink href="mailto:ayushayush2214@gmail.com">
-                ayushayush2214@gmail.com
-              </ContactLink>
-            </ContactItemContent>
-          </ContactItem>
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <ContactItem variants={itemVariants}>
+              <IconWrapper
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaEnvelope />
+              </IconWrapper>
+              <ContactItemContent>
+                <ContactLabel>Email</ContactLabel>
+                <ContactLink href="mailto:ayushayush2214@gmail.com">
+                  ayushayush2214@gmail.com
+                </ContactLink>
+              </ContactItemContent>
+            </ContactItem>
 
-          <ContactItem
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <IconBox>
-              <FaPhone />
-            </IconBox>
-            <ContactItemContent>
-              <ContactLabel>Phone & WhatsApp</ContactLabel>
-              <ContactLink href="tel:+919992953966">+91 999 295 3966</ContactLink>
-            </ContactItemContent>
-          </ContactItem>
+            <ContactItem variants={itemVariants}>
+              <IconWrapper
+                whileHover={{ scale: 1.2, rotate: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaPhone />
+              </IconWrapper>
+              <ContactItemContent>
+                <ContactLabel>Phone & WhatsApp</ContactLabel>
+                <ContactLink href="tel:+919992953966">+91 999 295 3966</ContactLink>
+              </ContactItemContent>
+            </ContactItem>
 
-          <ContactItem
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <IconBox>
-              <FaMapMarkerAlt />
-            </IconBox>
-            <ContactItemContent>
-              <ContactLabel>Location</ContactLabel>
-              <ContactValue>India</ContactValue>
-            </ContactItemContent>
-          </ContactItem>
+            <ContactItem variants={itemVariants}>
+              <IconWrapper
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaMapMarkerAlt />
+              </IconWrapper>
+              <ContactItemContent>
+                <ContactLabel>Location</ContactLabel>
+                <ContactValue>India</ContactValue>
+              </ContactItemContent>
+            </ContactItem>
+          </motion.div>
         </ContactInfo>
 
         <FormContainer
@@ -270,7 +388,7 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="Your Name"
+              placeholder="Your Full Name"
             />
           </FormGroup>
 
@@ -326,7 +444,7 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
             >
-              Message sent! Check your email client. (Opens your default email)
+              <FaCheck /> Message sent! Check your email client.
             </SuccessMessage>
           )}
         </FormContainer>
