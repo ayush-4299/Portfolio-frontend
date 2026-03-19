@@ -5,21 +5,10 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectsSection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #0a0a0a 0%, #16213e 50%, #0a0a0a 100%);
+  background: #0a0a0a;
   text-align: center;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
 `;
 
 const SectionTitle = styled(motion.h2)`
