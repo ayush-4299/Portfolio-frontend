@@ -15,13 +15,6 @@ const typewriter = `
   }
 `;
 
-const glow = `
-  @keyframes glow {
-    0%, 100% { text-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
-    50% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
-  }
-`;
-
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
