@@ -5,21 +5,10 @@ import { FaPython, FaDatabase, FaChartBar, FaCode, FaFlask, FaReact, FaNodeJs, F
 
 const SkillsSection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #111 0%, #1a0a2e 50%, #111 100%);
+  background: #0a0a0a;
   text-align: center;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
 `;
 
 const SectionTitle = styled(motion.h2)`
