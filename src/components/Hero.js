@@ -31,11 +31,11 @@ const HeroSection = styled.section`
 `;
 
 const ProfileImage = styled(motion.div)`
-  width: 180px;
-  height: 180px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   background: #111827;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,8 +67,8 @@ const ProfileImage = styled(motion.div)`
   }
   
   @media (max-width: 768px) {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
   }
 `;
 
@@ -307,7 +307,7 @@ const Hero = () => {
 
         <motion.div variants={itemVariants}>
           <TitleContainer>
-            <Title>Data Analyst | Full Stack Developer</Title>
+            <Title>Data Analyst</Title>
           </TitleContainer>
         </motion.div>
 
