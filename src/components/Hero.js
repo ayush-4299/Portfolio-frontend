@@ -81,7 +81,7 @@ const ProfileImage = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  overflow: hidden;
   box-shadow: 
     0 0 40px rgba(0, 212, 255, 0.5),
     0 0 80px rgba(255, 0, 110, 0.3),
@@ -89,6 +89,12 @@ const ProfileImage = styled(motion.div)`
   border: 3px solid rgba(0, 212, 255, 0.3);
   position: relative;
   z-index: 2;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
   &::before {
     content: '';
@@ -104,7 +110,6 @@ const ProfileImage = styled(motion.div)`
   @media (max-width: 768px) {
     width: 120px;
     height: 120px;
-    font-size: 3rem;
   }
 `;
 
@@ -336,7 +341,7 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: 'backOut' }}
             whileHover={{ scale: 1.05 }}
           >
-            👤
+            <img src="/profile.jpeg" alt="Ayush's profile" />
           </ProfileImage>
         </motion.div>
 
