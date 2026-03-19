@@ -36,7 +36,7 @@ const HeroSection = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+  background: #0a0a0a;
   padding: 0 2rem;
   position: relative;
   overflow: hidden;
@@ -81,20 +81,16 @@ const FloatingShape = styled(motion.div)`
 `;
 
 const ProfileImage = styled(motion.div)`
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  background: #fff;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 
-    0 0 40px rgba(0, 212, 255, 0.5),
-    0 0 80px rgba(255, 0, 110, 0.3),
-    inset 0 0 40px rgba(255, 255, 255, 0.1);
-  border: 3px solid rgba(0, 212, 255, 0.3);
+  border: 3px solid #00d4ff;
   position: relative;
   z-index: 2;
   
@@ -102,17 +98,7 @@ const ProfileImage = styled(motion.div)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -5px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #00d4ff, #ff006e);
-    opacity: 0.3;
-    filter: blur(10px);
-    z-index: -1;
   }
   
   @media (max-width: 768px) {
@@ -124,13 +110,9 @@ const ProfileImage = styled(motion.div)`
 const Name = styled(motion.h1)`
   font-size: 4rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #00d4ff, #ff006e, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   font-weight: 800;
   letter-spacing: 2px;
-  animation: glow 3s ease-in-out infinite;
   position: relative;
   z-index: 2;
   
@@ -181,7 +163,7 @@ const Tagline = styled(motion.p)`
 
 const Button = styled(motion.button)`
   padding: 1rem 2rem;
-  background: ${props => props.primary ? 'linear-gradient(135deg, #00d4ff, #0099cc)' : 'transparent'};
+  background: ${props => props.primary ? '#00d4ff' : 'transparent'};
   color: ${props => props.primary ? '#0a0a0a' : '#ffffff'};
   border: 2px solid #00d4ff;
   border-radius: 8px;
@@ -260,15 +242,13 @@ const SocialLink = styled(motion.a)`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
-  border: 2px solid rgba(0, 212, 255, 0.3);
+  background: transparent;
+  border: 2px solid #ffffff;
   
   &:hover {
     color: #00d4ff;
-    transform: translateY(-8px) rotate(10deg) scale(1.1);
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 110, 0.2));
+    transform: scale(1.1);
     border-color: #00d4ff;
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
   }
   
   @media (max-width: 768px) {
@@ -333,13 +313,6 @@ const Hero = () => {
 
   return (
     <HeroSection id="hero">
-      <FloatingShape className="shape-1">
-        <img src="/infosys.jpeg" alt="Infosys" />
-      </FloatingShape>
-      <FloatingShape className="shape-2">
-        <img src="/hackathon.jpeg" alt="Hackathon" />
-      </FloatingShape>
-      
       <motion.div
         variants={containerVariants}
         initial="hidden"
