@@ -17,8 +17,8 @@ const typewriter = `
 
 const glow = `
   @keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3); }
-    50% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.5), 0 0 60px rgba(255, 0, 110, 0.3); }
+    0%, 100% { text-shadow: 0 0 5px rgba(0, 212, 255, 0.3); }
+    50% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
   }
 `;
 
@@ -50,9 +50,17 @@ const FloatingShape = styled(motion.div)`
   position: absolute;
   width: 300px;
   height: 300px;
-  border: 2px solid rgba(0, 212, 255, 0.2);
-  border-radius: 50%;
+  border: 3px solid #ff9800;
+  border-radius: 20%;
   pointer-events: none;
+  overflow: hidden;
+  opacity: 0.8;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
   &.shape-1 {
     top: 10%;
@@ -325,8 +333,12 @@ const Hero = () => {
 
   return (
     <HeroSection id="hero">
-      <FloatingShape className="shape-1" />
-      <FloatingShape className="shape-2" />
+      <FloatingShape className="shape-1">
+        <img src="/infosys.jpeg" alt="Infosys" />
+      </FloatingShape>
+      <FloatingShape className="shape-2">
+        <img src="/hackathon.jpeg" alt="Hackathon" />
+      </FloatingShape>
       
       <motion.div
         variants={containerVariants}
