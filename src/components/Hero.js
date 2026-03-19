@@ -22,83 +22,55 @@ const glow = `
   }
 `;
 
-const float = `
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(5deg); }
-  }
-`;
-
 const HeroSection = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #0a0a0a;
-  padding: 0 2rem;
+  background: #0f172a;
+  padding: 7rem 2rem 2rem;
   position: relative;
   overflow: hidden;
   
   ${typewriter}
-  ${glow}
-  ${float}
-`;
-
-const FloatingShape = styled(motion.div)`
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border: 3px solid #ff9800;
-  border-radius: 20%;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.8;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  &.shape-1 {
-    top: 10%;
-    right: 10%;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  &.shape-2 {
-    bottom: 15%;
-    left: 5%;
-    animation: float 8s ease-in-out infinite 1s;
-  }
-  
-  @media (max-width: 768px) {
-    width: 150px;
-    height: 150px;
-  }
 `;
 
 const ProfileImage = styled(motion.div)`
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: #fff;
+  background: #111827;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 3px solid #00d4ff;
+  box-shadow: 
+    0 0 40px rgba(0, 212, 255, 0.5),
+    0 0 80px rgba(255, 0, 110, 0.3),
+    inset 0 0 40px rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(0, 212, 255, 0.3);
   position: relative;
   z-index: 2;
   
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
     border-radius: 50%;
+    background: #00d4ff;
+    opacity: 0.3;
+    filter: blur(10px);
+    z-index: -1;
   }
   
   @media (max-width: 768px) {
@@ -110,9 +82,11 @@ const ProfileImage = styled(motion.div)`
 const Name = styled(motion.h1)`
   font-size: 4rem;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color: #e6edf7;
   font-weight: 800;
   letter-spacing: 2px;
+  text-shadow: none;
+  animation: none;
   position: relative;
   z-index: 2;
   
@@ -163,7 +137,7 @@ const Tagline = styled(motion.p)`
 
 const Button = styled(motion.button)`
   padding: 1rem 2rem;
-  background: ${props => props.primary ? '#00d4ff' : 'transparent'};
+  background: ${props => props.primary ? 'linear-gradient(135deg, #00d4ff, #0099cc)' : 'transparent'};
   color: ${props => props.primary ? '#0a0a0a' : '#ffffff'};
   border: 2px solid #00d4ff;
   border-radius: 8px;
@@ -224,6 +198,8 @@ const ButtonContainer = styled.div`
 const SocialLinks = styled.div`
   display: flex;
   gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
   position: relative;
   z-index: 2;
   
@@ -242,13 +218,15 @@ const SocialLink = styled(motion.a)`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: transparent;
-  border: 2px solid #ffffff;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+  border: 2px solid rgba(0, 212, 255, 0.3);
   
   &:hover {
     color: #00d4ff;
-    transform: scale(1.1);
+    transform: translateY(-8px) rotate(10deg) scale(1.1);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 0, 110, 0.2));
     border-color: #00d4ff;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
   }
   
   @media (max-width: 768px) {
@@ -341,6 +319,29 @@ const Hero = () => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
+          <SocialLinks>
+            <SocialLink 
+              href="https://github.com/ayush-4299" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaGithub />
+            </SocialLink>
+            <SocialLink 
+              href="https://www.linkedin.com/in/ayush966/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaLinkedin />
+            </SocialLink>
+          </SocialLinks>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
           <Tagline>
             Transforming data into actionable insights and building intelligent web applications that solve real-world problems
           </Tagline>
@@ -368,28 +369,6 @@ const Hero = () => {
           </ButtonContainer>
         </motion.div>
 
-        <motion.div variants={itemVariants}>
-          <SocialLinks>
-            <SocialLink 
-              href="https://github.com/ayush-4299" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              whileHover={{ y: -8 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaGithub />
-            </SocialLink>
-            <SocialLink 
-              href="https://www.linkedin.com/in/ayush966/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              whileHover={{ y: -8 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaLinkedin />
-            </SocialLink>
-          </SocialLinks>
-        </motion.div>
       </motion.div>
 
       <ScrollDown

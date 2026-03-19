@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -8,19 +8,6 @@ import Certifications from './components/Certifications';
 import Education from './components/Education';
 import DataHighlights from './components/DataHighlights';
 import Contact from './components/Contact';
-
-// Background animation
-const float = keyframes`
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-20px) rotate(90deg); }
-  50% { transform: translateY(0px) rotate(180deg); }
-  75% { transform: translateY(20px) rotate(270deg); }
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-`;
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -35,11 +22,14 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0f3460 100%);
-    background-attachment: fixed;
+    background: #0b1220;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  section {
+    background: #0f172a !important;
   }
   
   a {
@@ -61,7 +51,7 @@ const ProgressBar = styled.div`
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #00d4ff, #ff006e, #00d4ff);
+  background: #00d4ff;
   z-index: 2000;
   transition: width 0.1s ease;
 `;
@@ -71,45 +61,11 @@ const AppContainer = styled.div`
   position: relative;
 `;
 
-const BackgroundElements = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: ${float} 20s ease-in-out infinite;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent 0%, rgba(255, 0, 110, 0.05) 50%, transparent 100%);
-    animation: ${pulse} 8s ease-in-out infinite;
-  }
-`;
-
 const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  background: linear-gradient(90deg, rgba(10, 10, 10, 0.95), rgba(15, 52, 96, 0.95));
+  background: rgba(11, 18, 32, 0.95);
   backdrop-filter: blur(20px);
   z-index: 999;
   padding: 1rem 2rem;
@@ -127,10 +83,7 @@ const Nav = styled.nav`
   
   h2 {
     font-size: 1.8rem;
-    background: linear-gradient(135deg, #00d4ff, #ff006e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #e6edf7;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -160,7 +113,7 @@ const NavLink = styled.a`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #00d4ff, #ff006e);
+    background: #00d4ff;
     transition: width 0.3s ease;
   }
   
@@ -204,7 +157,6 @@ function App() {
     <>
       <GlobalStyle />
       <ProgressBar style={{ width: `${scrollProgress}%` }} />
-      <BackgroundElements />
       <AppContainer>
         <Nav>
           <h2 style={{ cursor: 'pointer' }} onClick={() => scrollToSection('hero')}>Ayush</h2>
