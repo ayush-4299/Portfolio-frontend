@@ -386,7 +386,7 @@ const Hero = () => {
         <motion.div variants={itemVariants}>
           <SocialLinks>
             <SocialLink 
-              href="https://github.com" 
+              href="https://github.com/ayush-4299" 
               target="_blank" 
               rel="noopener noreferrer"
               whileHover={{ y: -8 }}
@@ -395,7 +395,7 @@ const Hero = () => {
               <FaGithub />
             </SocialLink>
             <SocialLink 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/ayush966/" 
               target="_blank" 
               rel="noopener noreferrer"
               whileHover={{ y: -8 }}
